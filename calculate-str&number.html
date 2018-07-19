@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>统计字符串中字母个数或统计最多字母数</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var str = "aaaabbbbcccccfgh";
+			// alert(str.split('').length);
+			var obj = {};
+			for (var i = 0; i <str.length; i++) {
+				var v = str.charAt(i);
+				if (obj[v] && obj[v].value == v) {
+					obj[v].count = ++ obj[v].count;
+				}else{
+					obj[v]={};
+					obj[v].value = v;
+					obj[v].count = 1;
+				}
+			}
+			for(key in obj){
+				document.write(obj[key].value+"="+obj[key].count+'&nbsp');
+			}
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

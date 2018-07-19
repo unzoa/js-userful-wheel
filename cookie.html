@@ -1,0 +1,37 @@
+<html>
+<head>
+</head>
+
+<body>
+
+  <script type="text/javascript">
+    var api = {};
+    api.getCookie = (cookie_name)=>{
+      var strCookie = document.cookie;
+        //将多cookie切割为多个名/值对
+        var arrCookie = strCookie.split("; ");
+        var userId;
+        //遍历cookie数组，处理每个cookie对
+        for (var i = 0; i < arrCookie.length; i++) {
+            var arr = arrCookie[i].split("=");
+            //找到名称为userId的cookie，并返回它的值
+            if (cookie_name == arr[0]) {
+                userId = arr[1];
+                break;
+            }
+        }
+        return unescape(userId);
+    }
+
+    api.setCookie = (name, value)=>{
+      //定义一天
+      var days = 1;
+      var exp = new Date();
+      //定义的失效时间，
+      exp.setTime(exp.getTime() + days * 24 * 60 * 60 * 1000);
+      //写入Cookie  ，toGMTstring将时间转换成字符串。
+      document.cookie = name + "=" + escape(value) + ";path=/;expires=" + exp.toGMTString;
+    }
+  </script>
+</body>
+</html>

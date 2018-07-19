@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript" src="../jquery.min.js"></script>
+	<script type="text/javascript">
+		//加载页面时执行一次
+	    changeMargin();
+	    //监听浏览器宽度的改变
+	    window.onresize = function(){
+	        changeMargin();
+	    };
+	    function changeMargin(){
+	        var docWidth = document.body.clientWidth;
+	        console.log(docWidth);
+	    }
+	</script>
+</body>
+</html>

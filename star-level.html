@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.star{border: 0;padding: 5px 15px;border-radius: 5px;color: #fff}
+		.gstar{background: gray;}
+		.lvstar{background: #09bb07}
+	</style>
+</head>
+<body>
+<div>
+	<span class="star gstar" num="0">M</span>
+	<span class="star gstar" num="1">M</span>
+	<span class="star gstar" num="2">M</span>
+	<span class="star gstar" num="3">M</span>
+	<span class="star gstar" num="4">M</span>
+</div>
+<br/>
+<button class="send">send</button>
+</body>
+</html>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript">
+	$('.star').on('click',function(){
+		var num = $(this).attr('num');
+		$('.star').removeClass('lvstar').addClass('gstar');
+		for(var i=0;i<=num;i++){
+			$('.star').eq(i).removeClass('gstar').addClass('lvstar');
+		}
+	})
+	$('.send').on('click',function(){
+		alert($('.lvstar').last().attr('num')*1 + 1);
+	})
+</script>

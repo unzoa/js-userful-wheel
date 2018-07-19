@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<input type="eamil" name="eamil" placeholder="eamil" class="eamil"><br>
+<input type="text" name="idCard" placeholder="id-num" class="id-num"><br>
+<input type="password" name="pwd" placeholder="password" class="pwd"><br>
+<input type="text" name="ipVer" placeholder="ipVer" class="ipVer"><br>
+<input type="text" name="dnsVer" placeholder="dnsVer" class="dnsVer"><br>
+<input type="text" name="md5Ver" placeholder="md5Ver" class="md5Ver"><br>
+<input type="text" name="idm" placeholder="ipVer,dnsVer,md5Ver" class="idm"><br>
+<button>vertify</button>
+<br/>
+<input type="number" name="number" placeholder="number" class="number">
+<br>
+<script type="text/javascript">
+	var emNum = document.querySelector('.eamil'),
+		btn = document.querySelector('button'),
+		numVertify = document.querySelector('.number'),
+		idNum = document.querySelector('.id-num'),
+		pwd = document.querySelector('.pwd'),
+		ipVer = document.querySelector('.ipVer'),
+		dnsVer = document.querySelector('.dnsVer'),
+		md5Ver = document.querySelector('.md5Ver'),
+		idm = document.querySelector('.idm');
+	
+	btn.addEventListener('click',function(){
+		// 验证邮箱
+		if (!/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(emNum.value)) {console.log('邮箱格式不正确'); }
+		
+		// 验证身份证
+		if(!/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(idNum.value)){
+			console.log('身份证格式不正确！'); 
+		}
+
+		// 验证密码
+		// [\W] == [0-9a-zA-Z]
+		// [\W\.\_] == [0-9a-zA-Z\.\_]
+		if (/[\W]/.test(pwd.value)) {
+			console.log('密码格式不正确！')
+		}else{
+			console.log('密码' + pwd.value)
+		}
+
+		// 验证ip
+		if (/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/.test(ipVer.value)) {
+			console.log(ipVer.value)
+		} else {
+			console.log('ip 格式不正确	')
+		}
+
+		// 验证dns
+		if (/^(?=^.{3,255}$)(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:\d+)*(\/\w+\.\w+)*([\?&]\w+=\w*)*$/.test(dnsVer.value)) {
+			console.log(dnsVer.value)
+		} else {
+			console.log('dns 格式不正确')
+		}
+
+		// 验证MD5
+		if (/^([0-9a-f]{32})$/.test(md5Ver.value)) {
+			console.log(md5Ver.value)
+		} else {
+			console.log('md5 格式不正确')
+		}
+
+	});
+	
+	var idmVer = (idm) => {
+		var isWhat = ''
+		// 验证ip
+		if (/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/.test(idm)) {
+			isWhat = 'ip'
+		}
+
+		// 验证dns
+		if (/^(?=^.{3,255}$)(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:\d+)*(\/\w+\.\w+)*([\?&]\w+=\w*)*$/.test(idm)) {
+			isWhat = 'dns'
+		}
+
+		// 验证MD5
+		if (/^([0-9a-f]{32})$/.test(idm)) {
+			isWhat = 'md5'
+		}
+
+		console.log(isWhat)
+	}
+
+	/*
+	** 验证数字
+	** [^0-9]== !/\D/g
+	*/ 
+		numVertify.addEventListener('keyup',function(){
+			console.log(this.value);
+			this.value=this.value.replace(/\D/g,'');
+		});
+		numVertify.addEventListener('afterpaste',function(){
+			console.log(this.value);
+			this.value=this.value.replace(/\D/g,'');
+		})	
+</script>
+</body>
+</html>

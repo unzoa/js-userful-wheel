@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>window-scroll</title>
+	<script type="text/javascript" src="../jquery.min.js"></script>
+	<script type="text/javascript">
+		$(window).scroll(function(){
+				if($(window).scrollTop()>=1200){
+					$('#haha').css('background-color','blue');
+				}
+			})
+	</script>
+</head>
+<body>
+<div style="height: 3000px;width: 200px;background-color: red" id="haha"></div>
+</body>
+</html>

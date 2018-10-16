@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html> 
+　　<head> 
+　　　　<meta charset="UTF8">
+　　</head> 
+　　<body> 
+ 
+ 
+<div id="contentHolder">       
+<video id="video" width="320" height="320" autoplay></video>       
+<button id="camera">拍照</button>        
+<canvas id="canvas" width="320" height="320">
+</canvas> 
+</div>
+ 
+ 
+ 
+ 
+ 
+<script type="text/javascript">  
+var video = document.getElementById('video');
+var track;
+var Camera= document.getElementById('camera');
+  window.addEventListener("DOMContentLoaded", function(){
+  navigator.getUserMedia = navigator.getUserMedia ||  navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    if (navigator.getUserMedia) {
+        navigator.getUserMedia({video:true},
+          function(stream) {
+            track = stream.getTracks()[0];  // 通过这个关闭摄像头
+            video.src = window.URL.createObjectURL(stream);
+            video.onloadedmetadata = function(e) {
+                 video.play();
+              };
+          },
+          function(err) {
+             alert(err.name);
+          }
+        );
+    }  
+ 
+    
+  });   
+ 
+ 
+Camera.onclick = function(){
+  var canvas = document.getElementById('canvas');
+  var context2D = canvas.getContext("2d");
+  context2D.fillStyle = "#ffffff";
+  context2D.fillRect(0, 0, 320, 320);
+  context2D.drawImage(video, 0, 0, 320, 320);
+  var image_code =canvas.toDataURL("image/png");//要传给后台的base64
+  
+  console.log(image_code)
+  if (null != track) {
+            track.stop();//关闭摄像头
+      }
+ 
+};
+</script>
+　　</body> 
+</html>

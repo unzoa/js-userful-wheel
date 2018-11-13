@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>act-in-out</title>
+</head>
+<body>
+<style>
+  /*动画*/
+  .act-in{
+    animation: act-in .5s ease;
+    animation-fill-mode: forwards;
+  }
+  @keyframes act-in {
+    0%{left: -50%;}
+    100%{left: 0;}
+  }
+
+  .act-out{
+    animation: act-out .5s ease;
+    animation-fill-mode: forwards;
+  }
+  @keyframes act-out {
+    0%{left: 0;}
+    100%{left: -50%;}
+  }
+  /*动画结束*/
+  .actor-dancer {
+    position: relative;
+    left: -50%;
+  }
+</style>
+
+<div>
+  <div class="actor-dancer">actor-dancer</div>
+  <button>actor-direct</button>
+</div>
+
+<script>
+  let btn = document.querySelector('button')
+  let dancer = document.querySelector('.actor-dancer')
+
+  btn.onclick = () => {
+    if (dancer.className === 'actor-dancer act-out' || dancer.className === 'actor-dancer') {
+      dancer.className = 'actor-dancer act-in'
+    } else {
+      dancer.className = 'actor-dancer act-out'
+    }
+  }
+</script>
+
+</body>
+</html>

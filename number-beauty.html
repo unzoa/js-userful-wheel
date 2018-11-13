@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>number-beauty</title>
+</head>
+<body>
+<script type="text/javascript">
+
+const numberChange = (num) => {
+  let nn = isNaN(num) ? 0 : String(num)
+  let showNum = 0
+  let func = (ll, kmgt) => {
+    return nn.slice(0, nn.length - ll) + '.' + nn.slice(nn.length - ll, nn.length - ll + 2) + kmgt
+  }
+  if (nn.length <= 3) {
+    showNum = nn
+  } else if (nn.length > 3 && nn.length <= 6) {
+    showNum = func(3, 'K')
+  } else if (nn.length > 6 && nn.length <= 9) {
+    showNum = func(6, 'M')
+  } else if (nn.length > 9 && nn.length <= 12) {
+    showNum = func(9, 'G')
+  } else if (nn.length > 12) {
+    showNum = func(12, 'T')
+  }
+  return showNum
+}
+
+</script>
+</body>
+</html>

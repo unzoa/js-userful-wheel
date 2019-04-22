@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+<script type="text/javascript">
+let pr = {
+  1: 11,
+  2: 22,
+  3: 33,
+  4: 44,
+  5: 55,
+  6: 66,
+  7: 77
+}
+let prLen = Object.getOwnPropertyNames(pr).length
+let targetArr = []
+let prFlag = 1
+let prItem = {}
+let prItemLen = 3
+for (let x in pr) {
+  if (prFlag % prItemLen !== 0) {
+    prItem[x] = pr[x]
+    if (prFlag % prItemLen === prLen % prItemLen && (prLen - prFlag) < prItemLen) {
+      targetArr.push(prItem)
+    }
+  } else {
+    prItem[x] = pr[x]
+    targetArr.push(prItem)
+    prItem = {}
+  }
+  prFlag++
+}
+
+console.log(targetArr)
+
+</script>
+</body>
+</html>
